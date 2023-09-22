@@ -5,12 +5,18 @@ This app creates a guest list within the frame work React and enables the follow
   - [ ] The first name input needs to have a related label containing `First name`
         <label for='firstName'>First name</label>
         <input type='text' id='firstName' name='firstName' />
+        --> save in a variable: const firstName
 
 - [ ] The last name input needs to have a related label containing `Last name`
       <label for='lastName'>Last name</label>
       <input type='text' id='lastName' name='lastName' />
+
+        --> save in a variable: const lastName
+
 - [ ] A guest should be created upon pressing <kbd>Return</kbd> in the last name input
       ??????
+      store name in a variable within a div:
+      const fullName = {[Max, Mustermann]}
 
 - [ ] After a guest is created, both fields need to be cleared again
       state changes
