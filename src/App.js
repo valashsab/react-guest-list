@@ -1,43 +1,65 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
+// useEffect, useRef
 export default function App() {
   // const baseUrl = 'http://localhost:4000';
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [list, setList] = useState([]);
 
-  const [inputText, setInputText] = useState({
-    firstName: '',
-    lastName: '',
-  });
-  const handleChange = (e) => {
-    setInputText(e.currentTarget.value);
+  // const [submitted, setSubmitted] = useState(false);
+  // const fname = useRef('');
+  // const lname = useRef('');
+
+  // new version of handleSubmit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const guestData = { firstName, lastName };
+    if (firstName && lastName) {
+      setList((ls) => [...ls, guestData]);
+      setFirstName('');
+      setLastName('');
+    }
   };
 
-  const [submitted, setSubmitted] = useState(false);
-  const fname = useRef('');
-  const lname = useRef('');
+  // useEffect(() => {
+  // const keyDownHandler = (event) => {
+  // if (event.key === 'Enter') {
+  // event.preventDefault();
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-    fname.current.value = '';
-    lname.current.value = '';
-  };
+  // handleSubmit();
+  // }
+  // };
 
-  useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
+  // document.addEventListener('keydown', keyDownHandler);
 
-        handleSubmit();
-      }
-    };
+  // return () => {
+  // document.removeEventListener('keydown', keyDownHandler);
+  // };
+  // }, []);
 
-    document.addEventListener('keydown', keyDownHandler);
+  // old, working version of submit with enter
+  // const handleSubmit = () => {
+  // setSubmitted(true);
+  // fname.current.value = '';
+  // lname.current.value = '';
+  // };
 
-    return () => {
-      document.removeEventListener('keydown', keyDownHandler);
-    };
-  }, []);
+  // useEffect(() => {
+  // const keyDownHandler = (event) => {
+  // if (event.key === 'Enter') {
+  // event.preventDefault();
+
+  // handleSubmit();
+  // }
+  // };
+
+  // document.addEventListener('keydown', keyDownHandler);
+
+  // return () => {
+  // document.removeEventListener('keydown', keyDownHandler);
+  // };
+  // }, []);
 
   return (
     <>
@@ -45,7 +67,7 @@ export default function App() {
         <h1>Guest List</h1>
       </header>
 
-      <form action="http://localhost:4000'">
+      <form action="http://localhost:4000'" onSubmit={handleSubmit}>
         <label htmlFor="firstName">
           First name<span>*</span>
         </label>
@@ -54,10 +76,10 @@ export default function App() {
           // type='text' --> per default, therefore can be ommitted
           id="firstName"
           name="firstName"
-          value={inputText.firstName}
-          onChange={handleChange}
+          value={firstName}
+          onChange={(event) => setFirstName(event.currentTarget.value)}
           required
-          ref={fname}
+          // ref={fname}
         />
         <br />
         <label htmlFor="lastName">
@@ -68,15 +90,26 @@ export default function App() {
           // type='text' --> per default, therefore can be ommitted
           id="lastName"
           name="lastName"
-          value={inputText.lastName}
-          onChange={handleChange}
+          value={lastName}
+          onChange={(event) => setLastName(event.currentTarget.value)}
           required
-          ref={lname}
+          // ref={lname}
         />
       </form>
 
-      {submitted && (
-        <div>
+      {list.map((a) => (
+        <div key={`guestData-div-${guestData}`}>
+          <div>{a.firstName}</div>
+          <div>{a.LastName}</div>
+        </div>
+      ))}
+    </>
+  );
+}
+
+{
+  /*      {submitted && (
+        <div data-test-id="guest">
           <br />
           <br />
           Guests <br />
@@ -110,4 +143,6 @@ export default function App() {
       <br />
     </>
   );
+}
+*/
 }
