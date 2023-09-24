@@ -2,8 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function App() {
   // const baseUrl = 'http://localhost:4000';
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
+
+  const [inputText, setInputText] = useState({
+    firstName: '',
+    lastName: '',
+  });
+  const handleChange = (e) => {
+    setInputText(e.currentTarget.value);
+  };
 
   const [submitted, setSubmitted] = useState(false);
   const fname = useRef('');
@@ -46,8 +54,8 @@ export default function App() {
           // type='text' --> per default, therefore can be ommitted
           id="firstName"
           name="firstName"
-          value={firstName}
-          onChange={(event) => setFirstName(event.currentTarget.value)}
+          value={inputText.firstName}
+          onChange={handleChange}
           required
           ref={fname}
         />
@@ -60,8 +68,8 @@ export default function App() {
           // type='text' --> per default, therefore can be ommitted
           id="lastName"
           name="lastName"
-          value={lastName}
-          onChange={(event) => setLastName(event.currentTarget.value)}
+          value={inputText.lastName}
+          onChange={handleChange}
           required
           ref={lname}
         />
@@ -72,7 +80,7 @@ export default function App() {
           <br />
           <br />
           Guests <br />
-          {firstName} {lastName}
+          {inputText.firstName} {inputText.lastName}
           <br />
           <br />
           <form>
