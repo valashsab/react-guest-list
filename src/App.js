@@ -18,14 +18,8 @@ export default function App() {
 
   useEffect(() => {
     const keyDownHandler = (event) => {
-      console.log('user pressed: ', event.key);
-
       if (event.key === 'Enter') {
         event.preventDefault();
-        // setFirstName('');
-        // setLastName('');
-        // fname.current.value = '';
-        // lname.current.value = '';
 
         handleSubmit();
       }
@@ -40,9 +34,6 @@ export default function App() {
 
   return (
     <>
-      <header>
-        <h1>Guest List</h1>
-      </header>
       <header>
         <h1>Guest List</h1>
       </header>
@@ -81,9 +72,12 @@ export default function App() {
 
       {submitted && (
         <div>
-          {' '}
+          <br />
+          <br />
           Guests <br />
           {firstName} {lastName}
+          <br />
+          <br />
           <form>
             <label htmlFor="notAttending">Not Attending</label>
             <input
@@ -91,6 +85,8 @@ export default function App() {
               id="notAttending"
               name="notAttending"
               value="notAttending"
+              // sets this checkbox to be checked!
+              checked
             />
             <br />
             <label htmlFor="Attending">Attending</label>
@@ -101,11 +97,12 @@ export default function App() {
               value="Attending"
             />
           </form>
+          <br />
+          <button>Remove</button>
         </div>
       )}
       <br />
       <br />
-      <button>Remove</button>
     </>
   );
 }
