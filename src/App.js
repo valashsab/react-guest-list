@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import styles from './styles.css';
 
 export default function App() {
   // const baseUrl = 'http://localhost:4000';
@@ -39,12 +38,11 @@ export default function App() {
       </header>
 
       <form action="http://localhost:4000'">
-        <label className={styles.labelName} htmlFor="firstName">
-          First name<span className={styles.required}>*</span>
+        <label htmlFor="firstName">
+          First name<span>*</span>
         </label>
         <br />
         <input
-          className={styles.inputName}
           // type='text' --> per default, therefore can be ommitted
           id="firstName"
           name="firstName"
@@ -54,12 +52,11 @@ export default function App() {
           ref={fname}
         />
         <br />
-        <label className={styles.labelName} htmlFor="lastName">
-          Last name<span className={styles.required}>*</span>
+        <label htmlFor="lastName">
+          Last name<span>*</span>
         </label>
         <br />
         <input
-          className={styles.inputName}
           // type='text' --> per default, therefore can be ommitted
           id="lastName"
           name="lastName"
