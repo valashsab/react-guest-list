@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function App() {
-  // const baseUrl = 'http://localhost:4000';
-  const baseUrl = 'https://30abb447-99ee-442a-a854-7c5e19b1b742.id.repl.co';
+const baseUrl = 'http://localhost:4000';
 
-  // Adding first and last name to the form
+// Adding first and last name to the form
+function GuestList() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [guests, setGuests] = useState([]);
@@ -119,8 +118,7 @@ export default function App() {
         <div data-test-id="guest">Loading...</div>
       ) : (
         <>
-          <h1>Matcha Get-Together</h1>
-          <h2>Guest List</h2>
+          <h1>Guest List</h1>
           <form onSubmit={async (e) => await handleSubmit(e)}>
             <label>
               First name:
@@ -139,9 +137,8 @@ export default function App() {
                 disabled={isLoading}
               />
             </label>
-            <button disabled={isLoading} hidden>
-              Create
-            </button>
+            <br />
+            <button disabled={isLoading}>Add guest</button>
           </form>
           <div>
             <ul>
@@ -150,7 +147,6 @@ export default function App() {
                   <div>
                     {guest.firstName} {guest.lastName}
                   </div>
-                  <br />
                   <button
                     aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
                     onClick={() => handleDelete(guest.id)}
@@ -170,7 +166,7 @@ export default function App() {
                 </li>
               ))}
             </ul>
-            <h2>Guest name:</h2>
+            <h2>Full Names:</h2>
             <ul>
               {fullNames.map((name) => (
                 <li key={`guest-${name}`}>{name}</li>
@@ -182,3 +178,4 @@ export default function App() {
     </div>
   );
 }
+export default GuestList;
