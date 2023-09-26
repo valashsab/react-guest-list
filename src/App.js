@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 const baseUrl = 'http://localhost:4000';
 
 // Adding first and last name to the form
-function GuestList() {
+
+function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [guests, setGuests] = useState([]);
@@ -178,4 +179,5 @@ function GuestList() {
     </div>
   );
 }
-export default GuestList;
+
+export default App;
